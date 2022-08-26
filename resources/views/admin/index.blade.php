@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title', 'Carro mt foda')
 
@@ -6,9 +6,15 @@
 @section('content')
     <nav class="navbar bg-light mb-5">
         <div class="container-fluid">
-            <span class="navbar-text">
-             Carros foda
+            <span    class="navbar-text">
+             Olá <u>{{ auth()->user()->name }}</u>, Bem vindo ao Carros foda
             </span>
+            <div class="row justify-content-end">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="btn btn-link text-muted">Sair</button>
+                </form>
+            </div>
         </div>
     </nav>
 
@@ -29,19 +35,22 @@
 
                                 <div class="form-group col">
                                     <label for="name">Nome</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nome do carro">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Nome do carro">
                                 </div>
 
                                 <div class="form-group col">
                                     <label for="name">Ano</label>
-                                    <input type="text" class="form-control" id="year" name="year" placeholder="Ano do carro">
+                                    <input type="text" class="form-control" id="year" name="year"
+                                           placeholder="Ano do carro">
                                 </div>
                             </div>
 
                             <div class="row mt-2">
                                 <div class="form-group col">
                                     <label for="name">Cor</label>
-                                    <input type="text" class="form-control" id="color" name="color" placeholder="Cor do carro">
+                                    <input type="text" class="form-control" id="color" name="color"
+                                           placeholder="Cor do carro">
                                 </div>
                             </div>
 
@@ -70,7 +79,8 @@
                     @foreach($cars as $car)
                         <tr>
                             <td class="align-middle">
-                                <img class="rounded-circle" src="{{ url('images/'.$car->image) }}" width="50px" height="50px" alt="">
+                                <img class="rounded-circle" src="{{ url('images/'.$car->image) }}" width="50px"
+                                     height="50px" alt="">
                             </td>
                             <td class="align-middle">{{ $car->name }}</td>
                             <td class="align-middle">{{ $car->year }}</td>
@@ -78,15 +88,19 @@
                             <td class="align-middle">
                                 @if($car->status == 1)
                                     <span class="badge bg-success">Disponível</span>
-                                    @else
+                                @else
                                     <span class="badge bg-warning">Comprado</span>
                                 @endif
                             </td>
                             <td class="align-middle">
                                 @if($car->status == 1)
-                                    <button class="btn btn-sm btn-success text-white" onclick="alert('em breve')">Comprar</button>
+                                    <button class="btn btn-sm btn-success text-white" onclick="alert('em breve')">
+                                        Comprar
+                                    </button>
                                 @else
-                                    <button class="btn btn-sm btn-warning text-white" onclick="alert('em breve')">Dados</button>
+                                    <button class="btn btn-sm btn-warning text-white" onclick="alert('em breve')">
+                                        Dados
+                                    </button>
                                 @endif
                             </td>
                         </tr>
