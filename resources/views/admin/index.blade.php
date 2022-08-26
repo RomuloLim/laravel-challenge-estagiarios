@@ -84,9 +84,9 @@
                             </td>
                             <td class="align-middle">
                                 @if($car->status == 1)
-                                    <button class="btn btn-sm btn-success text-white">Comprar</button>
+                                    <button class="btn btn-sm btn-success text-white" onclick="alert('em breve')">Comprar</button>
                                 @else
-                                    <button class="btn btn-sm btn-warning text-white">Dados</button>
+                                    <button class="btn btn-sm btn-warning text-white" onclick="alert('em breve')">Dados</button>
                                 @endif
                             </td>
                         </tr>
