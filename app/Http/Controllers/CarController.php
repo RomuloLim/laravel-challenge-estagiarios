@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RentCarRequest;
+use App\Mail\RentConfirmation;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CarController extends Controller
 {
@@ -54,8 +56,10 @@ class CarController extends Controller
             ]);
 
             $car->rents()->attach(Auth::user()->id);
-        });
+            $user = Auth::user();
 
+            Mail::to($user->email)->send(new RentConfirmation($user, ));
+        });
 
 
         return redirect()->route('car.index')->with('success', 'Carro alugado com sucesso!');

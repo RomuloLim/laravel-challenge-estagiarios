@@ -71,6 +71,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Ano</th>
                         <th scope="col">Cor</th>
+                        <th scope="col">Dono</th>
                         <th>Status</th>
                         <th>Ação</th>
                     </tr>
@@ -85,6 +86,7 @@
                             <td class="align-middle">{{ $car->name }}</td>
                             <td class="align-middle">{{ $car->year }}</td>
                             <td class="align-middle">{{ $car->color }}</td>
+                            <td class="align-middle">{{ $car->owner->name }}</td>
                             <td class="align-middle">
                                 @if($car->status == 1)
                                     <span class="badge bg-success">Disponível</span>

@@ -25,7 +25,7 @@ class Car extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function rents(): BelongsToMany
