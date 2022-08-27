@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cars', function (Blueprint $table) {
+        Schema::create('user_rents', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable()->default('default.jpg');
-            $table->string('name');
-            $table->string('year');
-            $table->string('color');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->smallInteger('status')->default(1);
+            $table->foreignId('car_id')->references('id')->on('cars');
+            $table->boolean('devolved')->default(false);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('user_rents');
     }
 };

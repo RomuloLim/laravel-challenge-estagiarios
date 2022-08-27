@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RentCarRequest;
 use App\Models\Car;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -30,9 +34,30 @@ class CarController extends Controller
 
         $data['image'] = $fileName;
 
-        $car = Car::create($data);
+        $car = Auth::user()->cars()->create($data);
 
         return redirect()->route('car.index')->with('success', 'Carro criado com sucesso!');
+
 //        return response()->json($car);
+    }
+
+    public function rent(RentCarRequest $request)
+    {
+        $data = $request->validated();
+
+
+        DB::transaction(function () use ($data){
+            $car = Car::find($data['car_id']);
+
+            $car->update([
+                'status' => 2,
+            ]);
+
+            $car->rents()->attach(Auth::user()->id);
+        });
+
+
+
+        return redirect()->route('car.index')->with('success', 'Carro alugado com sucesso!');
     }
 }

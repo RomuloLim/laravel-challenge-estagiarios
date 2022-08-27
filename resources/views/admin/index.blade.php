@@ -94,9 +94,13 @@
                             </td>
                             <td class="align-middle">
                                 @if($car->status == 1)
-                                    <button class="btn btn-sm btn-success text-white" onclick="alert('em breve')">
-                                        Comprar
-                                    </button>
+                                    <form action="{{ route('car.rent') }}" method="post">
+                                        @csrf
+                                        <input type="text" name="car_id" value="{{ $car->id }}" hidden>
+                                        <button class="btn btn-sm btn-success text-white">
+                                            Alugar
+                                        </button>
+                                    </form>
                                 @else
                                     <button class="btn btn-sm btn-warning text-white" onclick="alert('em breve')">
                                         Dados
@@ -112,4 +116,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+
+    </script>
 @endsection
