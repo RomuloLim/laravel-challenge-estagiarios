@@ -5,36 +5,22 @@
 ### Passo a passo
 Clone Repositório
 ```sh
-git clone https://github.com/especializati/setup-docker-laravel.git laravel9
+git clone https://github.com/RomuloLim/laravel-challenge-estagiarios challenge
 ```
 
 ```sh
-cd laravel9/
+cd challenge/
 ```
-
-
-Alterne para a branch laravel 8.x
-```sh
-git checkout laravel-9-com-php-8
-```
-
-
-Remova o versionamento
-```sh
-rm -rf .git/
-```
-
 
 Crie o Arquivo .env
 ```sh
-cd example-project/
+cd challenge/
 cp .env.example .env
 ```
 
-
 Atualize as variáveis de ambiente do arquivo .env
 ```dosini
-APP_NAME=EspecializaTi
+APP_NAME=Challenge
 APP_URL=http://localhost:8180
 
 DB_CONNECTION=mysql
@@ -79,4 +65,4 @@ php artisan key:generate
 
 
 Acesse o projeto
-[http://localhost:8180](http://localhost:8180)
+[http://localhost:8989](http://localhost:8989)
